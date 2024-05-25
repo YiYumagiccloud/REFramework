@@ -1063,7 +1063,7 @@ void ScriptRunner::on_draw_ui() {
         std::scoped_lock _{ m_access_mutex };
 
 
-        if (ImGui::CollapsingHeader("Script Generated UI")) {
+        if (ImGui::CollapsingHeader("脚本生成的 UI")) {
             if (m_states.empty()) {
                 return;
             }
