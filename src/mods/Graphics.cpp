@@ -92,33 +92,33 @@ void Graphics::on_draw_ui() {
 #endif
 
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("Ultrawide/FOV Options")) {
-        if (m_ultrawide_fix->draw("Ultrawide/FOV/Aspect Ratio Fix") && m_ultrawide_fix->value() == false) {
+    if (ImGui::TreeNode("超宽/FOV 选项")) {
+        if (m_ultrawide_fix->draw("超宽/FOV/纵横比修复") && m_ultrawide_fix->value() == false) {
             do_ultrawide_fov_restore(true);
         }
 
         if (m_ultrawide_fix->value()) {
-            m_ultrawide_vertical_fov->draw("Ultrawide: Enable Vertical FOV");
-            m_ultrawide_custom_fov->draw("Ultrawide: Override FOV");
-            m_ultrawide_fov_multiplier->draw("Ultrawide: FOV Multiplier");
+            m_ultrawide_vertical_fov->draw("超宽：启用垂直 FOV");
+            m_ultrawide_custom_fov->draw("超宽：覆盖 FOV");
+            m_ultrawide_fov_multiplier->draw("超宽：FOV 倍增器");
         }
 
-        m_force_render_res_to_window->draw("Force Render Resolution to Window Size");
+        m_force_render_res_to_window->draw("将渲染分辨率强制设置为窗口大小");
 
         ImGui::TreePop();
     }
 
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("GUI Options")) {
-        m_disable_gui->draw("Hide GUI");
-        m_disable_gui_key->draw("Hide GUI key");
+    if (ImGui::TreeNode("图形用户界面选项")) {
+        m_disable_gui->draw("隐藏 GUI");
+        m_disable_gui_key->draw("隐藏 GUI key");
         ImGui::TreePop();
     }
 
 #if TDB_VER >= 69
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("Ray Tracing Tweaks")) {
-        m_ray_tracing_tweaks->draw("Enable Ray Tracing Tweaks");
+    if (ImGui::TreeNode("光线追踪调整")) {
+        m_ray_tracing_tweaks->draw("启用光线追踪调整");
 
         if (m_ray_tracing_tweaks->value()) {
             m_ray_trace_disable_raster_shadows->draw("Disable Raster Shadows (with PT)");
