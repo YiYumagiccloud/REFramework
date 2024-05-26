@@ -1367,17 +1367,17 @@ void REFramework::draw_ui() {
     static const auto REF_NAME = std::format("REFramework [{}+{}-{:.8}]", REF_TAG, REF_COMMITS_PAST_TAG, REF_COMMIT_HASH);
     bool is_open = true;
     ImGui::Begin(REF_NAME.c_str(), &is_open);
-    ImGui::Text("Default Menu Key: Insert");
-    ImGui::Checkbox("Transparency", &m_ui_option_transparent);
+    ImGui::Text("默认菜单键: Insert");
+    ImGui::Checkbox("透明背景", &m_ui_option_transparent);
     ImGui::SameLine();
     ImGui::Text("(?)");
     if (ImGui::IsItemHovered())
-        ImGui::SetTooltip("Makes the UI transparent when not focused.");
-    ImGui::Checkbox("Input Passthrough", &m_ui_passthrough);
+        ImGui::SetTooltip("未聚焦时使 UI 透明。");
+    ImGui::Checkbox("输入直通", &m_ui_passthrough);
     ImGui::SameLine();
     ImGui::Text("(?)");
     if (ImGui::IsItemHovered())
-        ImGui::SetTooltip("Allows mouse and keyboard inputs to register to the game while the UI is focused.");
+        ImGui::SetTooltip("允许在 UI 聚焦时将鼠标和键盘输入注册到游戏。");
 
     // Mods:
     draw_about();
@@ -1385,8 +1385,8 @@ void REFramework::draw_ui() {
     if (m_error.empty() && m_game_data_initialized) {
         m_mods->on_draw_ui();
     } else if (!m_game_data_initialized) {
-        ImGui::TextWrapped("REFramework is currently initializing...");
-        ImGui::TextWrapped("This menu will close after initialization if you have the remember option enabled.");
+        ImGui::TextWrapped("REFramework 当前正在初始化...");
+        ImGui::TextWrapped("如果您启用了记住选项，则此菜单将在初始化后关闭.");
     } else if (!m_error.empty()) {
         ImGui::TextWrapped("REFramework error: %s", m_error.c_str());
     }
@@ -1497,7 +1497,7 @@ void REFramework::draw_about() {
                 }
             }
 
-            ImGui::Text("Engine information");
+            ImGui::Text("发动机信息");
             ImGui::Text(" Config: %s", engine_config.c_str());
             ImGui::Text(" Version: %s", clean_version.c_str());
             ImGui::Text(" TDB Version: %i", tdb_version);
