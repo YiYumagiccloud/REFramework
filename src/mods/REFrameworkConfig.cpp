@@ -12,18 +12,18 @@ std::optional<std::string> REFrameworkConfig::on_initialize() {
 }
 
 void REFrameworkConfig::on_draw_ui() {
-    if (!ImGui::CollapsingHeader("Configuration")) {
+    if (!ImGui::CollapsingHeader("配置")) {
         return;
     }
 
-    ImGui::TreePush("Configuration");
+    ImGui::TreePush("配置");
 
-    m_menu_key->draw("Menu Key");
-    m_show_cursor_key->draw("Show Cursor Key");
-    m_remember_menu_state->draw("Remember Menu Open/Closed State");
-    m_always_show_cursor->draw("Draw Cursor With Menu Open");
+    m_menu_key->draw("菜单键");
+    m_show_cursor_key->draw("显示光标键");
+    m_remember_menu_state->draw("记住菜单打开/关闭状态");
+    m_always_show_cursor->draw("打开菜单时绘制光标");
 
-    if (m_font_size->draw("Font Size")) {
+    if (m_font_size->draw("字体大小")) {
         g_framework->set_font_size(m_font_size->value());
     }
 
