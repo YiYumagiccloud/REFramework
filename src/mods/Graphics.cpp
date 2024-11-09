@@ -151,11 +151,11 @@ void Graphics::on_draw_ui() {
 #ifdef RE4
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
     if (ImGui::TreeNode("RE4 Scope Tweaks")) {
-        m_scope_tweaks->draw("Enable Scope Tweaks");
+        m_scope_tweaks->draw("启用瞄准镜调整");
 
         if (m_scope_tweaks->value()) {
-            m_scope_interlaced_rendering->draw("Enable Interlaced Rendering");
-            m_scope_image_quality->draw("Scope Image Quality");
+            m_scope_interlaced_rendering->draw("启用交错渲染");
+            m_scope_image_quality->draw("瞄准镜图像质量");
         }
 
         ImGui::TreePop();
@@ -163,63 +163,63 @@ void Graphics::on_draw_ui() {
 #endif
 
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("Ultrawide/FOV Options")) {
-        if (m_ultrawide_fix->draw("Ultrawide/FOV/Aspect Ratio Fix") && m_ultrawide_fix->value() == false) {
+    if (ImGui::TreeNode("超宽屏/视野(FOV)选项")) {
+        if (m_ultrawide_fix->draw("超宽屏/视野/宽高比修复") && m_ultrawide_fix->value() == false) {
             do_ultrawide_fov_restore(true);
         }
 
         if (m_ultrawide_fix->value()) {
-            m_ultrawide_constrain_ui->draw("Ultrawide: Constrain UI to 16:9");
+            m_ultrawide_constrain_ui->draw("超宽屏：将UI限制在16:9");
             if (m_ultrawide_constrain_ui->value()) {
-                m_ultrawide_constrain_child_ui->draw("Ultrawide: Constrain Child UI to 16:9");
+                m_ultrawide_constrain_child_ui->draw("超宽屏：将子UI限制在16:9");
             }
-            m_ultrawide_vertical_fov->draw("Ultrawide: Enable Vertical FOV");
-            m_ultrawide_custom_fov->draw("Ultrawide: Override FOV");
-            m_ultrawide_fov_multiplier->draw("Ultrawide: FOV Multiplier");
+            m_ultrawide_vertical_fov->draw("超宽屏：启用垂直视野(FOV)");
+            m_ultrawide_custom_fov->draw("超宽屏：覆盖视野(FOV)");
+            m_ultrawide_fov_multiplier->draw("超宽屏：视野(FOV)乘数");
         }
 
-        m_force_render_res_to_window->draw("Force Render Resolution to Window Size");
+        m_force_render_res_to_window->draw("强制渲染分辨率与窗口大小相匹配");
 
         ImGui::TreePop();
     }
 
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
     if (ImGui::TreeNode("GUI Options")) {
-        m_disable_gui->draw("Hide GUI");
-        m_disable_gui_key->draw("Hide GUI key");
+        m_disable_gui->draw("隐藏GUI");
+        m_disable_gui_key->draw("隐藏GUI键");
         ImGui::TreePop();
     }
 
 #if TDB_VER >= 69
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("Ray Tracing Tweaks")) {
-        m_ray_tracing_tweaks->draw("Enable Ray Tracing Tweaks");
+    if (ImGui::TreeNode("射线追踪调整")) {
+        m_ray_tracing_tweaks->draw("启用射线追踪调整");
 
         if (m_ray_tracing_tweaks->value()) {
-            m_ray_trace_disable_raster_shadows->draw("Disable Raster Shadows (with PT)");
-            m_ray_trace_always_recreate_rt_component->draw("Always Recreate RT Component");
+            m_ray_trace_disable_raster_shadows->draw("禁用光栅化阴影（带有PT）");
+            m_ray_trace_always_recreate_rt_component->draw("始终重新创建RT组件");
             // Description of the above option
             if (ImGui::IsItemHovered()) {
                 ImGui::SetTooltip("Recreates the RT component. Useful if Ray Tracing Tweaks is not working.");
             }
-            m_ray_trace_type->draw("Ray Trace Type");
+            m_ray_trace_type->draw("射线追踪类型");
 
             const auto clone_tooltip = 
                     "Can draw another RT pass over the main RT pass. Useful for hybrid rendering.\n"
                     "Example: Set Ray Trace Type to Pure and Ray Trace Clone Type to ASVGF. This adds RTGI to the path traced image.\n"
                     "Path Space Filter is also another good alternative for RTGI but it costs more performance.\n";
 
-            m_ray_trace_clone_type_pre->draw("Ray Trace Clone Type Pre");
+            m_ray_trace_clone_type_pre->draw("射线追踪克隆类型（预）");
             if (ImGui::IsItemHovered()) {
                 ImGui::SetTooltip(clone_tooltip);
             }
 
-            m_ray_trace_clone_type_post->draw("Ray Trace Clone Type Post");
+            m_ray_trace_clone_type_post->draw("射线追踪克隆类型（后）");
             if (ImGui::IsItemHovered()) {
                 ImGui::SetTooltip(clone_tooltip);
             }
             
-            m_ray_trace_clone_type_true->draw("Ray Trace Clone Type True");
+            m_ray_trace_clone_type_true->draw("射线追踪克隆类型（真实）");
             if (ImGui::IsItemHovered()) {
                 const auto true_tooltip =
                     "Uses a completely separate RT component instead of re-using the main RT component.\n"
@@ -229,8 +229,8 @@ void Graphics::on_draw_ui() {
 
             // Hybrid/pure
             if (is_pt_type(m_ray_trace_type->value()) || is_pt_type(m_ray_trace_clone_type_true->value())) {
-                m_bounce_count->draw("Bounce Count");
-                m_samples_per_pixel->draw("Samples Per Pixel");
+                m_bounce_count->draw("反弹次数");
+                m_samples_per_pixel->draw("每像素样本数");
             }
         }
 
@@ -238,8 +238,8 @@ void Graphics::on_draw_ui() {
     }
 
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("Shader Playground")) {
-        m_shader_playground->draw("Enable Shader Playground");
+    if (ImGui::TreeNode("着色器游乐场")) {
+        m_shader_playground->draw("启用着色器游乐场");
 
         if (m_shader_playground->value()) {  
             //for (size_t i = 0; i < m_replacement_shaders.size(); ++i) {
